@@ -26,14 +26,14 @@ def radius_of_curvature(z, zt, C):
     radius : float
         radius of curvature.
     """
-    return zt / (1/3 - C/2*(zt/z)**1.5)
+    return zt / (1/3.0 - C/2.0*(zt/z)**1.5)
 
 def rotate(x, z, xCenter, zCenter, angle):
     """Returns the new position of the point.
 
     Parameters
     ---------
-    x : float
+    x : floatAs we mentioned, we wrote a Python code to reproduce programmatica
         previous x-position of the point
     z : float
         previous z-position of the point.
@@ -85,7 +85,7 @@ def plot_flight_path(zt, z0, theta0):
     theta = theta0
 
     # calculate the constant C
-    C = (numpy.cos(theta) - 1/3*z[0]/zt)*(z[0]/zt)**.5
+    C = (numpy.cos(theta) - 1.0/3*z[0]/zt)*(z[0]/zt)**.5
     # incremental distance along the flight path
     ds = 1 
         
@@ -108,5 +108,5 @@ def plot_flight_path(zt, z0, theta0):
     pyplot.ylabel("$z$", fontsize=18)
     pyplot.legend()
     pyplot.show()
-
+    
 # End of File
