@@ -110,3 +110,4 @@ def plot_flight_path(zt, z0, theta0):
     pyplot.show()
     
 # End of File
+plot_flight_path(64, 16, 0)

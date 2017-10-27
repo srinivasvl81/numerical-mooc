@@ -13,11 +13,12 @@ rcParams['font.family'] = 'serif'
 rcParams['font.size'] = 16
 
 # Parameters
-nx = 41
-dx = 2.0/(nx-1)
+nx = 50
+dx = 0.2#2.0/(nx-1)
+print dx
 nt = 10
-dt = .02
-c =1        # Wave speed
+dt = .05
+c =4       # Wave speed
 x = np.linspace(0, 2, nx)
 
 # Defining the bounds of the wave

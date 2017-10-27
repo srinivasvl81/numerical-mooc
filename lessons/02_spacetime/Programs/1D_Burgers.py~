@@ -1,0 +1,62 @@
+
+# coding @ VL Srinivas
+# 1D Burgers equation
+
+# Importing modules
+import numpy as np
+import sympy as sp
+from matplotlib import pyplot as pp
+from matplotlib import rcParams
+rcParams['font.family'] = 'serif'
+rcParams['font.size'] = 16
+
+#from sympy import init_printing
+#init_printing()
+
+x, nu, t = sp.symbols('x, nu, t')
+phi = sp.exp(-(x-4.0*t)**2.0/4.0*nu*(t+1)) + sp.exp(-(x-4.0*t-2.0*np.pi)**2/(4.0*nu*(t+1)))
+
+phi_prime = phi.diff(x)
+# print phi_prime
+
+from sympy.utilities.lambdify import lambdify
+
+#initial condition
+u = -2.0*nu*(phi_prime*1.0/phi) + 4.0
+# print u
+
+u_lamb = lambdify((t, x, nu), u)        # puts the values of t, x, nu in u and solves 
+#print("The value of u at t=1, x=4, nu=3 is {}.".format(u_lamb(1,4,3)))
+
+# Variable declaration
+nx = 101        # no. of spatial grid points
+nt = 100        # no. of temporal grid points
+dx = 2*np.pi/(nx-1)     # spatial step size
+nu = 0.7        # diffusion coefficient
+sigma = 0.1     # CFL number
+dt = sigma*dx**2.0/nu     # time step size
+
+x = np.linspace(0, 2*np.pi, nx)         # array of spatial grid points
+un = np.empty(nx)
+t = 0
+
+u = np.asarray([u_lamb(t, x0, nu) for x0 in x])
+
+
+# Plotting
+pp.figure(figsize=(8,5))
+pp.plot(x, u, color = '#003366', ls ='--', lw=3)
+pp.xlim([0, 2.0*np.pi])
+pp.ylim([0, 10]);
+
+
+
+
+
+
+
+
+
+
+
+

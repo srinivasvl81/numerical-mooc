@@ -8,8 +8,11 @@ Created on Fri Jun 30 17:51:18 2017
 import numpy as np
 from matplotlib import pyplot as pp
 from matplotlib import rcParams
+import time
 rcParams['font.family'] = 'serif'
 rcParams['font.size'] = 16
+
+start = time.time()
 
 nx = 41         # Number of spatial grid points
 dx = 2.0/(nx-1)
@@ -44,6 +47,7 @@ from matplotlib import animation as ani
 fig = pp.figure(figsize = (8, 5))
 ax = pp.axes(xlim = (0,2), ylim=(1,2.5))
 line = ax.plot([], [], color='#003366', ls='--', lw=3)[0]
+ax.set_title('1D Diffusion Equation-Solution')
 
 # Diffusion function
 def diffusion(i):
@@ -55,6 +59,8 @@ def diffusion(i):
 # Animation 
 anim = ani.FuncAnimation(fig, diffusion, frames=nt, interval=100)
 
-anim.save('image.mp4', fps=20, writer="avconv", codec="libx264")
+#anim.save('image.mp4', fps=20, writer="avconv", codec="libx264")
+anim.save('Diffusion.mp4', writer='avconv')
 
-
+elapsed = time.time() - start
+print('Time taken:', elapsed,'sec') 

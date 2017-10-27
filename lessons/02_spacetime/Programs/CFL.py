@@ -26,9 +26,9 @@ def linear_conv(nx):
     
     Returns: None
     """
-    dx = 2.0/(nx-1)
+    dx = 0.2#2.0/(nx-1)
     nt = 20
-    c = 1.0
+    c = 4.0
     sigma = .8  # CFL number defined
     dt = sigma*dx/c      # time step determined from CFL no.
     x= np.linspace(0.0, 2, nx)
@@ -49,5 +49,5 @@ def linear_conv(nx):
     pp.plot(x, u, color = 'r', ls='--', lw = 2)
     pp.ylim(0, 2.5)
 
-linear_conv(500)    
+linear_conv(200)    
         
